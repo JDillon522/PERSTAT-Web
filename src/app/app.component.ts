@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment as env } from '../environments/environment';
+import { ApiService } from './services/api.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,11 +10,9 @@ import { environment as env } from '../environments/environment';
 export class AppComponent implements OnInit {
   title = 'PERSTAT-Web';
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.http.get(`${env.host}/bot-user`).subscribe(users => {
-      console.log(users);
-    });
+    this.api.getUsers();
   }
 }

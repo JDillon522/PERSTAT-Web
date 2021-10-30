@@ -5,9 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -15,7 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     BrowserAnimationsModule,
 
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
