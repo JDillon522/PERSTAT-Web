@@ -8,7 +8,9 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'PERSTAT-Web';
+
+  public links = [{link: 'Users', path: 'users'}, {link: 'Dashboard', path: ''}, {link: 'Teams', path: 'teams'}];
+  public activeLink = this.links[0];
 
   constructor(private api: ApiService) {}
 

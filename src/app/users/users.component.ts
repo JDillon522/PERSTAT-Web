@@ -10,7 +10,7 @@ import { ApiService } from '../services/api.service';
 })
 export class UsersComponent implements OnInit {
   public users: MatTableDataSource<User> = new MatTableDataSource<User>([]);
-  public columns = ['name', 'included_in_perstat', 'perstat_required'];
+  public columns = ['name', 'included_in_report', 'perstat_required'];
 
   constructor(private api: ApiService) { }
 

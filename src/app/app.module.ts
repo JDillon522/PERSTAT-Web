@@ -8,11 +8,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TeamsComponent } from './teams/teams.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,8 @@ import { MatTableModule } from '@angular/material/table';
     BrowserAnimationsModule,
 
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
