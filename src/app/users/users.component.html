@@ -1,10 +1,47 @@
-
 <div>
-    <section class="controls">
-        <button mat-mini-fab [matMenuTriggerFor]="menu" color="accent" title="Filter">
-            <mat-icon>filter_list</mat-icon>
+    <mat-card>
+        <h3>FILTER: </h3>
+        <form [formGroup]="filterForm">
+            <mat-checkbox formControlName="report">
+                Only Included In Report
+            </mat-checkbox>
+
+            <mat-checkbox formControlName="included">
+                Only Perstat Required
+            </mat-checkbox>
+
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="all">
+                        All Roles
+                    </mat-option>
+                    <mat-option value="lead">
+                        Team Lead
+                    </mat-option>
+                    <mat-option value="member">
+                        Member
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Assigned Team</mat-label>
+                <mat-select formControlName="team">
+                    <mat-option value="all">
+                        All Teams
+                    </mat-option>
+                    <mat-option *ngFor="let team of teams" [value]="team.team_name">
+                        {{team.team_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+
+        <button mat-mini-fab title="Reset Filters" (click)="resetFilter()">
+            <mat-icon>autorenew</mat-icon>
         </button>
-    </section>
+    </mat-card>
 
     <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort>
 
@@ -39,18 +76,3 @@
     </table>
 
 </div>
-
-<mat-menu #menu="matMenu">
-    <form [formGroup]="filterForm">
-        <div mat-menu-item>
-            <mat-checkbox  formControlName="included">
-                Included In Perstat
-            </mat-checkbox>
-
-        </div>
-
-        <!-- <mat-checkbox mat-menu-item formControlName="report">
-            Reported
-        </mat-checkbox> -->
-    </form>
-  </mat-menu>
