@@ -1,9 +1,19 @@
 div {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 20px;
+    flex-direction: column;
 
-    table {
+    table, section.controls {
         min-width: 700px;
+        max-width: 1000px;
+        width: 100%;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 20px;
     }
 }

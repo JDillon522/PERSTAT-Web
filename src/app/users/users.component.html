@@ -1,18 +1,35 @@
+
 <div>
-    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+    <section class="controls">
+        <button mat-mini-fab [matMenuTriggerFor]="menu" color="accent" title="Filter">
+            <mat-icon>filter_list</mat-icon>
+        </button>
+    </section>
+
+    <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
             <td mat-cell *matCellDef="let user"> {{user.name}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+            <td mat-cell *matCellDef="let user"> {{user.role}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="team_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Team </th>
+            <td mat-cell *matCellDef="let user"> {{user.team_name}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="perstat_required">
-            <th mat-header-cell *matHeaderCellDef> Perstat Required </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Perstat Required </th>
             <td mat-cell *matCellDef="let user"> {{user.perstat_required}} </td>
         </ng-container>
 
         <ng-container matColumnDef="included_in_report">
-            <th mat-header-cell *matHeaderCellDef> Included In Report </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Included In Report </th>
             <td mat-cell *matCellDef="let user"> {{user.included_in_report}} </td>
         </ng-container>
 
@@ -22,3 +39,18 @@
     </table>
 
 </div>
+
+<mat-menu #menu="matMenu">
+    <form [formGroup]="filterForm">
+        <div mat-menu-item>
+            <mat-checkbox  formControlName="included">
+                Included In Perstat
+            </mat-checkbox>
+
+        </div>
+
+        <!-- <mat-checkbox mat-menu-item formControlName="report">
+            Reported
+        </mat-checkbox> -->
+    </form>
+  </mat-menu>
