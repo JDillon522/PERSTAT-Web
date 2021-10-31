@@ -1,36 +1,46 @@
-div {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px;
     flex-direction: column;
 
-    table, mat-card {
+    .usersTable, mat-card {
         min-width: 700px;
         max-width: 1000px;
         width: 100%;
     }
 
     mat-card {
-        padding: 10px 0 0;
+        padding: 0;
         margin: 15px;
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
 
         h3 {
-            margin: auto;
-            margin-left: 20px;
+            margin: auto 0px auto 20px;
+            width: 60px;
         }
+    }
 
-        button {
-            margin-right: 20px;
-        }
+    .usersTable table {
+        width: 100%;
     }
 
     form {
         width: 100%;
         display: flex;
-        justify-content: space-evenly;
-        align-items: baseline;
+        flex-direction: column;
+        margin: 20px 20px 0;
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search {
+            font-size: 16px;
+        }
     }
 }

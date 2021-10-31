@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
 import { debounceTime } from 'rxjs/operators';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users',
@@ -23,10 +24,11 @@ export class UsersComponent implements OnInit, AfterViewInit {
     team: ['all'],
     role: ['all'],
     included: [],
-    report: []
+    report: [],
+    search: []
   });
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) public sort!: MatSort;
 
   constructor(
@@ -44,12 +46,12 @@ export class UsersComponent implements OnInit, AfterViewInit {
     });
 
     this.filterForm.valueChanges.subscribe(change => {
-      this.users.filter = 'trigger';
+      this.users.filter = change.search;
     });
   }
 
   ngAfterViewInit(): void {
-    // this.dataSource.paginator = this.paginator;
+    this.users.paginator = this.paginator;
     setTimeout(() => {
       this.users.filterPredicate = this.customFilter.bind(this);
 
@@ -63,12 +65,23 @@ export class UsersComponent implements OnInit, AfterViewInit {
       report: null,
       included: null,
       team: 'all',
-      role: 'all'
+      role: 'all',
+      search: ''
     });
   }
 
   private customFilter(data: User, filterString: string): boolean {
     const filter = this.filterForm.value;
+    filterString = filterString.toLocaleLowerCase();
+
+    if (filterString &&
+      (
+        !new RegExp(filterString, 'g').test(data.name?.toLocaleLowerCase()) &&
+        !new RegExp(filterString, 'g').test(data.team_name?.toLocaleLowerCase())
+      )
+      ) {
+      return false;
+    }
 
     if (filter.report && !data.included_in_report) {
       return false;
