@@ -80,6 +80,14 @@
                 <td mat-cell *matCellDef="let user"> {{user.included_in_report}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let user">
+                    <button mat-icon-button (click)="editUser(user)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="columns"></tr>
             <tr mat-row *matRowDef="let row; columns: columns;"></tr>

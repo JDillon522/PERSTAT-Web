@@ -8,6 +8,7 @@ import { ApiService } from '../services/api.service';
 import { debounceTime } from 'rxjs/operators';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class UsersComponent implements OnInit, AfterViewInit {
   public users: MatTableDataSource<User> = new MatTableDataSource<User>([]);
-  public columns = ['name', 'included_in_report', 'perstat_required', 'role', 'team_name'];
+  public columns = ['name', 'included_in_report', 'perstat_required', 'role', 'team_name', 'action'];
 
   public teams: AssignedTeam[] = [];
 
@@ -33,7 +34,9 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   constructor(
     private api: ApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -100,6 +103,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
     }
 
     return true;
+  }
+
+  public editUser(user: User): void {
+    this.router.navigate(['edit', user.bot_id], { relativeTo: this.route });
   }
 
 }

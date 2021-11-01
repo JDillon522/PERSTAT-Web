@@ -22,12 +22,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { EditUserComponent } from './edit-user/edit-user.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UsersComponent,
-    TeamsComponent
+    TeamsComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
